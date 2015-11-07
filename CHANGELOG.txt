@@ -1,0 +1,4 @@
+2015-11-07  Stavros Filippidis  <stavros@filippidis.name>
+
+	* Version 1.0 released, placed under the GNU General Public License.
+	* Changes to the source code for compatibility and improvements.
