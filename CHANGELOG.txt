@@ -1,3 +1,8 @@
+2015-11-11  Stavros Filippidis  <stavros@filippidis.name>
+
+	* Version 1.0.1 released.
+	* Corrected project name in the "About" window.
+
 2015-11-07  Stavros Filippidis  <stavros@filippidis.name>
 
 	* Version 1.0 released, placed under the GNU General Public License.
