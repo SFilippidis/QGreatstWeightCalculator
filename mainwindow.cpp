@@ -1,6 +1,6 @@
 // MainWindow's implementation.
 
-// Copyright (C) 2011-2015 Stavros Filippidis
+// Copyright (C) 2011-2017 Stavros Filippidis
 // Contact: stavros@filippidis.name
 
 // This file is part of QGreatstWeightCalculator.
@@ -21,7 +21,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QTextStream>
-#include <QStandardPaths>
+//#include <QStandardPaths>
+#include <QDir>
 
 void displayInformationMessage(QString infoText, QString title, QMessageBox::Icon icon)
 {
@@ -61,14 +62,15 @@ void MainWindow::populate_history()
     QString nameValue;
     QString idealWeightValue;
     QDateTime recordDateTimeValue;
-    QFile dataFile(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data");
+    //QFile dataFile(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data");
+    QFile dataFile(QDir::homePath()+"/QGreatstWeightCalculator.data");
     if(!dataFile.open(QIODevice::ReadOnly))
     {
         return;
     } // if(!dataFile.open(QIODevice::ReadOnly))
     m_doesDataFileExist = true;
     QDataStream in(&dataFile);
-    in.setVersion(QDataStream::Qt_DefaultCompiledVersion);
+    //in.setVersion(QDataStream::Qt_DefaultCompiledVersion);
     QString dataFromFileInHTML;
     dataFromFileInHTML="<center><table border='1'><tr><td><center><b>"+QString::fromWCharArray(L"Date and time")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Name")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Gender")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Height (m)")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Weight (kg)")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Body mass index")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Ideal weight (kg)")+"</b></center></td></tr>";
     while (!in.atEnd())
@@ -94,7 +96,8 @@ void MainWindow::create_history()
     double bmi = weight/(height*height);
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
-    QString filename = QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data";
+    //QString filename = QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data";
+    QString filename = QDir::homePath()+"/QGreatstWeightCalculator.data";
     QFile dataFile(filename);
     if(!dataFile.open(QIODevice::Append))
     {
@@ -104,7 +107,7 @@ void MainWindow::create_history()
         return;
     } // if(!dataFile.open(QIODevice::Append))
     QDataStream out(&dataFile);
-    out.setVersion(QDataStream::Qt_DefaultCompiledVersion);
+    //out.setVersion(QDataStream::Qt_DefaultCompiledVersion);
     QString idealWeight = QString::fromWCharArray(L"from ");
     idealWeight += QString::number(idealWeightLow,'f',1);
     idealWeight += QString::fromWCharArray(L" to ");
@@ -127,7 +130,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
-    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.1. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2015 Stavros Filippidis<BR>email: <A HREF='mailto:stavros@filippidis.name'>stavros@filippidis.name</A><BR>www: <A HREF='http://stavros.filippidis.name'>http://stavros.filippidis.name</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
+    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.2. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2017 Stavros Filippidis<BR>email: <A HREF='mailto:stavros@filippidis.name'>stavros@filippidis.name</A><BR>www: <A HREF='http://stavros.filippidis.name'>http://stavros.filippidis.name</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
     QString licenceTitle = "About QGreatstWeightCalculator";
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::Information);
 } // void MainWindow::about()
