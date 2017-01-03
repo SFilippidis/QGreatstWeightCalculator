@@ -1,3 +1,8 @@
+2017-01-03  Stavros Filippidis  <stavros@filippidis.name>
+
+	* Version 1.0.2 released.
+	* Minor changes for better compatibility.
+	
 2015-11-11  Stavros Filippidis  <stavros@filippidis.name>
 
 	* Version 1.0.1 released.
