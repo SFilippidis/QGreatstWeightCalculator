@@ -1,7 +1,7 @@
 2017-01-05  Stavros Filippidis  <stavros@filippidis.name>
 
 	* Version 1.0.2-beta is under development.
-	* Minor changes.
+	* Corrected spelling mistake.
 
 2017-01-03  Stavros Filippidis  <stavros@filippidis.name>
 
