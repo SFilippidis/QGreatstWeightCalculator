@@ -158,7 +158,7 @@ void MainWindow::on_pushButtonCalculate_clicked()
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
     QString results = QString::fromWCharArray(L"Here are your results (approximately):<br>");
-    results += QString::fromWCharArray(L"<ul><li>Yoyr body mass index is <b>");
+    results += QString::fromWCharArray(L"<ul><li>Your body mass index is <b>");
     results += QString::number(bmi,'d',2);
     results += QString::fromWCharArray(L"</b>, so your standard weight status category is <b>\"");
     if ((weight>0.0) & (height>0.0))
