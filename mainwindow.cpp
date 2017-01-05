@@ -119,7 +119,7 @@ void MainWindow::create_history()
         QString writingDataInfoText = QString::fromWCharArray(L"File QGreatstWeightCalculator.data was created and your data is saved.<br><br>File QGreatstWeightCalculator.data exists in your home directory. To delete all saved data, delete the file QGreatstWeightCalculator.data.<BR><BR>This window will not appear again (in the following savings).<br><br>The location of the file is:<BR><BR>");
         writingDataInfoText += filename;
         QString writingDataTitle = QString::fromWCharArray(L"Data file created");
-        displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::NoIcon);
+        displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::Information);
     } // if (!m_doesDataFileExist)
 } // void MainWindow::create_history()
 
@@ -132,7 +132,7 @@ void MainWindow::about()
 {
     QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.3-beta. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2017 Stavros Filippidis<BR>email: <A HREF='mailto:stavros@filippidis.name'>stavros@filippidis.name</A><BR>www: <A HREF='http://stavros.filippidis.name'>http://stavros.filippidis.name</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
     QString licenceTitle = "About QGreatstWeightCalculator";
-    displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::Information);
+    displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
 } // void MainWindow::about()
 
 void MainWindow::on_pushButtonResetData_clicked()
