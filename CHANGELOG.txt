@@ -2,6 +2,7 @@
 
 	* Version 1.0.2-beta is under development.
 	* Corrected spelling mistake.
+	* Changed type of license's message box.
 
 2017-01-03  Stavros Filippidis  <stavros@filippidis.name>
 
