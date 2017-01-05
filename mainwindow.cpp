@@ -119,7 +119,7 @@ void MainWindow::create_history()
         QString writingDataInfoText = QString::fromWCharArray(L"File QGreatstWeightCalculator.data was created and your data is saved.<br><br>File QGreatstWeightCalculator.data exists in your home directory. To delete all saved data, delete the file QGreatstWeightCalculator.data.<BR><BR>This window will not appear again (in the following savings).<br><br>The location of the file is:<BR><BR>");
         writingDataInfoText += filename;
         QString writingDataTitle = QString::fromWCharArray(L"Data file created");
-        displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::Information);
+        displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::NoIcon);
     } // if (!m_doesDataFileExist)
 } // void MainWindow::create_history()
 
