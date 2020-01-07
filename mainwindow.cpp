@@ -1,6 +1,6 @@
 // MainWindow's implementation.
 
-// Copyright (C) 2011-2018 Stavros Filippidis
+// Copyright (C) 2011-2020 Stavros Filippidis
 // Contact: sfilippidis@gmail.com
 
 // This file is part of QGreatstWeightCalculator.
@@ -65,9 +65,7 @@ void MainWindow::populate_history()
     //QFile dataFile(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data");
     QFile dataFile(QDir::homePath()+"/QGreatstWeightCalculator.data");
     if(!dataFile.open(QIODevice::ReadOnly))
-    {
         return;
-    } // if(!dataFile.open(QIODevice::ReadOnly))
     m_doesDataFileExist = true;
     QDataStream in(&dataFile);
     //in.setVersion(QDataStream::Qt_DefaultCompiledVersion);
@@ -90,9 +88,7 @@ void MainWindow::create_history()
     int gender = m_ui->comboBoxGender->currentIndex();
     QString genderText = QString::fromWCharArray(L"male");
     if (gender == 1)
-    {
         genderText = QString::fromWCharArray(L"female");
-    } // if (gender == 1)
     double bmi = weight/(height*height);
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
@@ -130,7 +126,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
-    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.4. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2018 Stavros Filippidis<BR>email: <A HREF='mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='https://blogs.sch.gr/sfil/'>https://blogs.sch.gr/sfil/</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
+    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.5. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2020 Stavros Filippidis<BR>email: <A HREF='mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='https://blogs.sch.gr/sfil/'>https://blogs.sch.gr/sfil/</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
     QString licenceTitle = "About QGreatstWeightCalculator";
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
 } // void MainWindow::about()
@@ -161,42 +157,27 @@ void MainWindow::on_pushButtonCalculate_clicked()
     results += QString::fromWCharArray(L"<ul><li>Your body mass index is <b>");
     results += QString::number(bmi,'d',2);
     results += QString::fromWCharArray(L"</b>, so your standard weight status category is <b>\"");
-    if ((weight>0.0) & (height>0.0))
+    if (bmi < 18.5)
+        results += QString::fromWCharArray(L"underweight");
+    else if ((bmi >= 18.5) && (bmi < 25.0))
+        results += QString::fromWCharArray(L"normal");
+    else if ((bmi >= 25.0) && (bmi < 30.0))
+        results += QString::fromWCharArray(L"overweight");
+    else if (bmi >= 30.0)
+        results += QString::fromWCharArray(L"obese");
+    results += QString::fromWCharArray(L"\"</b>.</li><br>");
+    results += QString::fromWCharArray(L"<li>Based on your height, your normal weight range is <b>from ");
+    results += QString::number(idealWeightLow,'f',1);
+    results += QString::fromWCharArray(L" to ");
+    results += QString::number(idealWeightHigh,'f',1);
+    results += QString::fromWCharArray(L" kg</b>.</li><br>");
+    double kcal = 0.0;
+    if (gender == 0)
+        kcal += 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
+    else
+        kcal += 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
+    switch (activity)
     {
-        if (bmi < 18.5)
-        {
-            results += QString::fromWCharArray(L"underweight");
-        } // if (bmi < 18.5)
-        else if ((bmi >= 18.5) && (bmi < 25))
-        {
-            results += QString::fromWCharArray(L"normal");
-        } // else if ((bmi >= 18.5) && (bmi < 25))
-        else if ((bmi >= 25) && (bmi < 30))
-        {
-            results += QString::fromWCharArray(L"overweight");
-        } // else if ((bmi >= 25) && (bmi < 30))
-        else if (bmi >= 30)
-        {
-            results += QString::fromWCharArray(L"obese");
-        } // else if (bmi >= 30)
-        results += QString::fromWCharArray(L"\"</b>.</li><br>");
-        results += QString::fromWCharArray(L"<li>Based on your height, your normal weight range is <b>from ");
-        results += QString::number(idealWeightLow,'f',1);
-        results += QString::fromWCharArray(L" to ");
-        results += QString::number(idealWeightHigh,'f',1);
-        results += QString::fromWCharArray(L" kg</b>.</li><br>");
-        double kcal = 0.0;
-        if (gender == 0)
-        {
-            // 0 == male
-            kcal += 66 + weight * 13.70 + height * 5.00 * 100 - age * 6.80;
-        } // "end-THEN" if (gender == 0)
-        else
-        {
-            kcal += 655 + weight * 9.60 + height * 1.80 * 100 - age * 4.70;
-        } //"end-ELSE" if (gender == 0)
-        switch (activity)
-        {
         case 0:
             // no change in kcal!
             break;
@@ -215,18 +196,12 @@ void MainWindow::on_pushButtonCalculate_clicked()
         case 5:
             kcal *= 1.90;
             break;
-        } // switch (activity)
-        results += QString::fromWCharArray(L"<li> Based on the data you entered, to maintain your current weight you need <b>");
-        results += QString::number((kcal),'f',0);
-        results += QString::fromWCharArray(L" Calories (kCal)</b> per day.</li>");
-        m_ui->results->setText(results);
-        m_ui->pushButtonSave->setEnabled(true);
-    } // "end-THEN", if ((weight>0.0) & (height>0.0))
-    else
-    {
-        results = QString::fromWCharArray(L"There seems to be a problem with the values you entered: please notice that you should enter positive numerical values for height, weight and age, within the range accepted from this application. Please, try again!");
-        m_ui->results->setText(results);
-    } // "end-ELSE", if ((weight>0.0) & (height>0.0))
+    } // switch (activity)
+    results += QString::fromWCharArray(L"<li> Based on the data you entered, to maintain your current weight you need <b>");
+    results += QString::number((kcal),'f',2);
+    results += QString::fromWCharArray(L" Calories (kCal)</b> per day.</li>");
+    m_ui->results->setText(results);
+    m_ui->pushButtonSave->setEnabled(true);
 } // void MainWindow::on_pushButtonCalculate_clicked()
 
 void MainWindow::on_pushButtonSave_clicked()
