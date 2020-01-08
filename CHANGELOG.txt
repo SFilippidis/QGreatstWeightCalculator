@@ -1,6 +1,6 @@
 2020-01-08  Stavros Filippidis  <sfilippidis@gmail.com>
 
-	* Preparing for next release (temporary named 1.0.5+)
+	* Preparing for next release (temporary named 1.0.5+).
 
 2020-01-07  Stavros Filippidis  <sfilippidis@gmail.com>
 
