@@ -52,4 +52,4 @@ private slots:
     void on_pushButtonResetData_clicked();
 };
 
-#endif // ifndef MAINWINDOW_H
+#endif
