@@ -69,14 +69,13 @@ void MainWindow::populate_history()
     m_doesDataFileExist = true;
     QDataStream in(&dataFile);
     //in.setVersion(QDataStream::Qt_DefaultCompiledVersion);
-    QString dataFromFileInHTML;
-    dataFromFileInHTML="<center><table border='1'><tr><td><center><b>"+QString::fromWCharArray(L"Date and time")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Name")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Gender")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Height (m)")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Weight (kg)")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Body mass index")+"</b></center></td><td><center><b>"+QString::fromWCharArray(L"Ideal weight (kg)")+"</b></center></td></tr>";
+    QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td><td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></center></td><td><center><b>Body mass index</b></center></td><td><center><b>Ideal weight (kg)</b></center></td></tr>");
     while (!in.atEnd())
     {
         in >> recordDateTimeValue >> nameValue >> genderValue >> heightValue >> weightValue >> BMIValue >> idealWeightValue;
-        dataFromFileInHTML+="<tr><td><center>"+recordDateTimeValue.toString()+"</center></td><td><center>"+nameValue+"</center></td><td><center>"+genderValue+"</center></td><td><center>"+QString::number(heightValue,'f',2)+"</center></td><td><center>"+QString::number(weightValue,'f',2)+"</center></td><td><center>"+QString::number(BMIValue,'f',2)+"</center></td><td><center>"+idealWeightValue+"</center></td></tr>";
+        dataFromFileInHTML+=QString::fromWCharArray(L"<tr><td><center>")+recordDateTimeValue.toString()+QString::fromWCharArray(L"</center></td><td><center>")+nameValue+QString::fromWCharArray(L"</center></td><td><center>")+genderValue+QString::fromWCharArray(L"</center></td><td><center>")+QString::number(heightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")+QString::number(weightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")+QString::number(BMIValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")+idealWeightValue+QString::fromWCharArray(L"</center></td></tr>");
     } // while (!in.atEnd())
-    dataFromFileInHTML+="</table></center>";
+    dataFromFileInHTML+=QString::fromWCharArray(L"</table></center>");
     MainWindow::m_ui->textBrowser_3->setText(dataFromFileInHTML);
     dataFile.close();
 } // void MainWindow::populate_history()
@@ -93,7 +92,7 @@ void MainWindow::create_history()
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
     //QString filename = QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/QGreatstWeightCalculator.data";
-    QString filename = QDir::homePath()+"/QGreatstWeightCalculator.data";
+    QString filename = QDir::homePath()+QString::fromWCharArray(L"/QGreatstWeightCalculator.data");
     QFile dataFile(filename);
     if(!dataFile.open(QIODevice::Append))
     {
@@ -127,7 +126,7 @@ MainWindow::~MainWindow()
 void MainWindow::about()
 {
     QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.5+. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2020 Stavros Filippidis<BR>email: <A HREF='mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='https://blogs.sch.gr/sfil/'>https://blogs.sch.gr/sfil/</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
-    QString licenceTitle = "About QGreatstWeightCalculator";
+    QString licenceTitle = QString::fromWCharArray(L"About QGreatstWeightCalculator");
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
 } // void MainWindow::about()
 
