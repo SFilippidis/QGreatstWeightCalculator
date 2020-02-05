@@ -197,9 +197,9 @@ void MainWindow::on_pushButtonCalculate_clicked()
     results += QString::fromWCharArray(L" kg</b>.</li><br>");
     double kcal = 0.0;
     if (gender == 0)
-        kcal += 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
+        kcal = 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
     else
-        kcal += 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
+        kcal = 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
     switch (activity) {
         case 0:
             break;
