@@ -38,7 +38,7 @@ void displayInformationMessage(QString infoText, QString title, QMessageBox::Ico
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.setIcon(icon);
     msgBox.exec();
-}
+} // void displayInformationMessage(QString infoText, QString title, QMessageBox::Icon icon)
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(QString::fromWCharArray(L"QGreatstWeightCalculator"));
     connect(m_ui->actionAbout_QGreatstWeightCalculator, SIGNAL(triggered()), this, SLOT(about()));
     connect(m_ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-}
+} // MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::populate_history()
 {
@@ -84,11 +84,11 @@ void MainWindow::populate_history()
                 +QString::number(weightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")
                 +QString::number(BMIValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")
                 +idealWeightValue+QString::fromWCharArray(L"</center></td></tr>");
-    }
+    } // while (!in.atEnd())
     dataFromFileInHTML+=QString::fromWCharArray(L"</table></center>");
     MainWindow::m_ui->textBrowser_3->setText(dataFromFileInHTML);
     dataFile.close();
-}
+} // void MainWindow::populate_history()
 
 void MainWindow::create_history()
 {
@@ -109,7 +109,7 @@ void MainWindow::create_history()
         QString datafileErrorTitle = QString::fromWCharArray(L"Error with the results' file");
         displayInformationMessage(datafileErrorInfoText, datafileErrorTitle, QMessageBox::Critical);
         return;
-    }
+    } // if(!dataFile.open(QIODevice::Append))
     QDataStream out(&dataFile);
     QString idealWeight = QString::fromWCharArray(L"from ");
     idealWeight += QString::number(idealWeightLow,'f',1);
@@ -127,13 +127,13 @@ void MainWindow::create_history()
         writingDataInfoText += filename;
         QString writingDataTitle = QString::fromWCharArray(L"Data file created");
         displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::Information);
-    }
-}
+    } // if (!m_doesDataFileExist)
+} // void MainWindow::create_history()
 
 MainWindow::~MainWindow()
 {
     delete m_ui;
-}
+} // MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
@@ -153,7 +153,7 @@ void MainWindow::about()
                                                          "licenses/</A>.<BR>");
     QString licenceTitle = QString::fromWCharArray(L"About QGreatstWeightCalculator");
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
-}
+} // void MainWindow::about()
 
 void MainWindow::on_pushButtonResetData_clicked()
 {
@@ -165,7 +165,7 @@ void MainWindow::on_pushButtonResetData_clicked()
     m_ui->comboBoxGender->setCurrentIndex(0);
     m_ui->comboBoxActivity->setCurrentIndex(0);
     m_ui->pushButtonSave->setEnabled(false);
-}
+} // void MainWindow::on_pushButtonResetData_clicked()
 
 void MainWindow::on_pushButtonCalculate_clicked()
 {
@@ -218,13 +218,13 @@ void MainWindow::on_pushButtonCalculate_clicked()
         case 5:
             kcal *= 1.90;
             break;
-    }
+    } // switch (activity)
     results += QString::fromWCharArray(L"<li> Based on the data you entered, to maintain your current weight you need <b>");
     results += QString::number((kcal),'f',2);
     results += QString::fromWCharArray(L" Calories (kCal)</b> per day.</li>");
     m_ui->results->setText(results);
     m_ui->pushButtonSave->setEnabled(true);
-}
+} // void MainWindow::on_pushButtonCalculate_clicked()
 
 void MainWindow::on_pushButtonSave_clicked()
 {
@@ -232,9 +232,9 @@ void MainWindow::on_pushButtonSave_clicked()
     m_ui->pushButtonSave->setEnabled(false);
     MainWindow::on_pushButtonResetData_clicked();
     MainWindow::populate_history();
-}
+} // void MainWindow::on_pushButtonSave_clicked()
 
 void MainWindow::on_pushButtonExit_clicked()
 {
     QApplication::quit();
-}
+} // void MainWindow::on_pushButtonExit_clicked()

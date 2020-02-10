@@ -31,7 +31,7 @@ void displayInformationMessage(QString infoText, QString title);
 namespace Ui
 {
     class MainWindow;
-}
+} // namespace Ui
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -49,6 +49,6 @@ private slots:
     void on_pushButtonSave_clicked();
     void on_pushButtonCalculate_clicked();
     void on_pushButtonResetData_clicked();
-};
+}; // class MainWindow
 
 #endif
