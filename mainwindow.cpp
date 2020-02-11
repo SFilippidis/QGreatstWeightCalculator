@@ -220,7 +220,7 @@ void MainWindow::on_pushButtonCalculate_clicked()
             break;
     } // switch (activity)
     results += QString::fromWCharArray(L"<li> Based on the data you entered, to maintain your current weight you need <b>");
-    results += QString::number((kcal),'f',2);
+    results += QString::number((kcal),'f',0);
     results += QString::fromWCharArray(L" Calories (kCal)</b> per day.</li>");
     m_ui->results->setText(results);
     m_ui->pushButtonSave->setEnabled(true);
