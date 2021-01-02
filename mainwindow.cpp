@@ -1,6 +1,6 @@
 // MainWindow's implementation.
 
-// Copyright (C) 2011-2020 Stavros Filippidis
+// Copyright (C) 2011-2021 Stavros Filippidis
 // Contact: sfilippidis@gmail.com
 
 // This file is part of QGreatstWeightCalculator.
@@ -20,8 +20,6 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QTextStream>
-#include <QDir>
 
 void displayInformationMessage(QString infoText, QString title, QMessageBox::Icon icon)
 {
@@ -138,9 +136,9 @@ MainWindow::~MainWindow()
 void MainWindow::about()
 {
     QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.5+. A program for weight related calcu"
-                                                         "lations.<BR><BR>Copyright (C) 2011-2020 Stavros Filippidis<BR>email: <A HREF="
+                                                         "lations.<BR><BR>Copyright (C) 2011-2021 Stavros Filippidis<BR>email: <A HREF="
                                                          "'mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='htt"
-                                                         "ps://blogs.sch.gr/sfil/'>https://blogs.sch.gr/sfil/</A><BR><BR>QGreatstWeight"
+                                                         "ps://blogs.sch.gr/sfil/'>https://sfil.mysch.gr/</A><BR><BR>QGreatstWeight"
                                                          "Calculator is free software: you can redistribute it and/or modify<BR>it unde"
                                                          "r the terms of the GNU General Public License as published by<BR>the Free Sof"
                                                          "tware Foundation, either version 3 of the License, or<BR>(at your option) any"

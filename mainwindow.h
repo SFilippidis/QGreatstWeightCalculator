@@ -1,6 +1,6 @@
 // Header file for the main window.
 
-// Copyright (C) 2011-2020 Stavros Filippidis
+// Copyright (C) 2011-2021 Stavros Filippidis
 // Contact: sfilippidis@gmail.com
 
 // This file is part of QGreatstWeightCalculator.
@@ -25,6 +25,8 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QDateTime>
+#include <QTextStream>
+#include <QDir>
 
 void displayInformationMessage(QString infoText, QString title);
 
