@@ -36,7 +36,7 @@ void displayInformationMessage(QString infoText, QString title, QMessageBox::Ico
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.setIcon(icon);
     msgBox.exec();
-} // void displayInformationMessage(QString infoText, QString title, QMessageBox::Icon icon)
+} // end displayInformationMessage
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(QString::fromWCharArray(L"QGreatstWeightCalculator"));
     connect(m_ui->actionAbout_QGreatstWeightCalculator, SIGNAL(triggered()), this, SLOT(about()));
     connect(m_ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-} // MainWindow::MainWindow(QWidget *parent)
+} // end MainWindow::MainWindow
 
 void MainWindow::populate_history()
 {
@@ -62,8 +62,9 @@ void MainWindow::populate_history()
     QString idealWeightValue;
     QDateTime recordDateTimeValue;
     QFile dataFile(QDir::homePath()+"/QGreatstWeightCalculator.data");
-    if(!dataFile.open(QIODevice::ReadOnly))
+    if (!dataFile.open(QIODevice::ReadOnly)) {
         return;
+    } // end if
     m_doesDataFileExist = true;
     QDataStream in(&dataFile);
     QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td>"
@@ -82,11 +83,11 @@ void MainWindow::populate_history()
                 +QString::number(weightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")
                 +QString::number(BMIValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>")
                 +idealWeightValue+QString::fromWCharArray(L"</center></td></tr>");
-    } // while (!in.atEnd())
+    } // end while
     dataFromFileInHTML+=QString::fromWCharArray(L"</table></center>");
     MainWindow::m_ui->textBrowser_3->setText(dataFromFileInHTML);
     dataFile.close();
-} // void MainWindow::populate_history()
+} // end MainWindow::populate_history
 
 void MainWindow::create_history()
 {
@@ -94,8 +95,9 @@ void MainWindow::create_history()
     double height = m_ui->doubleSpinBoxHeight->value()/100.0;
     int gender = m_ui->comboBoxGender->currentIndex();
     QString genderText = QString::fromWCharArray(L"male");
-    if (gender == 1)
+    if (gender == 1) {
         genderText = QString::fromWCharArray(L"female");
+    } // end if
     double bmi = weight/(height*height);
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
@@ -107,7 +109,7 @@ void MainWindow::create_history()
         QString datafileErrorTitle = QString::fromWCharArray(L"Error with the results' file");
         displayInformationMessage(datafileErrorInfoText, datafileErrorTitle, QMessageBox::Critical);
         return;
-    } // if(!dataFile.open(QIODevice::Append))
+    } // end if
     QDataStream out(&dataFile);
     QString idealWeight = QString::fromWCharArray(L"from ");
     idealWeight += QString::number(idealWeightLow,'f',1);
@@ -125,13 +127,13 @@ void MainWindow::create_history()
         writingDataInfoText += filename;
         QString writingDataTitle = QString::fromWCharArray(L"Data file created");
         displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::Information);
-    } // if (!m_doesDataFileExist)
-} // void MainWindow::create_history()
+    } // end if
+} // end MainWindow::create_history
 
 MainWindow::~MainWindow()
 {
     delete m_ui;
-} // MainWindow::~MainWindow()
+} // end MainWindow::~MainWindow
 
 void MainWindow::about()
 {
@@ -151,7 +153,7 @@ void MainWindow::about()
                                                          "licenses/</A>.<BR>");
     QString licenceTitle = QString::fromWCharArray(L"About QGreatstWeightCalculator");
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
-} // void MainWindow::about()
+} // end MainWindow::about
 
 void MainWindow::on_pushButtonResetData_clicked()
 {
@@ -163,7 +165,7 @@ void MainWindow::on_pushButtonResetData_clicked()
     m_ui->comboBoxGender->setCurrentIndex(0);
     m_ui->comboBoxActivity->setCurrentIndex(0);
     m_ui->pushButtonSave->setEnabled(false);
-} // void MainWindow::on_pushButtonResetData_clicked()
+} // end MainWindow::on_pushButtonResetData_clicked
 
 void MainWindow::on_pushButtonCalculate_clicked()
 {
@@ -179,14 +181,15 @@ void MainWindow::on_pushButtonCalculate_clicked()
     results += QString::fromWCharArray(L"<ul><li>Your body mass index is <b>");
     results += QString::number(bmi,'d',2);
     results += QString::fromWCharArray(L"</b>, so your standard weight status category is <b>\"");
-    if (bmi < 18.5)
+    if (bmi < 18.5) {
         results += QString::fromWCharArray(L"underweight");
-    else if ((bmi >= 18.5) && (bmi < 25.0))
+    } else if ((bmi >= 18.5) && (bmi < 25.0)) {
         results += QString::fromWCharArray(L"normal");
-    else if ((bmi >= 25.0) && (bmi < 30.0))
+    } else if ((bmi >= 25.0) && (bmi < 30.0)) {
         results += QString::fromWCharArray(L"overweight");
-    else if (bmi >= 30.0)
+    } else if (bmi >= 30.0) {
         results += QString::fromWCharArray(L"obese");
+    } // end if
     results += QString::fromWCharArray(L"\"</b>.</li><br>");
     results += QString::fromWCharArray(L"<li>Based on your height, your normal weight range is <b>from ");
     results += QString::number(idealWeightLow,'f',1);
@@ -194,10 +197,11 @@ void MainWindow::on_pushButtonCalculate_clicked()
     results += QString::number(idealWeightHigh,'f',1);
     results += QString::fromWCharArray(L" kg</b>.</li><br>");
     double kcal = 0.0;
-    if (gender == 0)
+    if (gender == 0) {
         kcal = 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
-    else
+    } else {
         kcal = 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
+    } // end if
     switch (activity) {
         case 0:
             break;
@@ -216,13 +220,13 @@ void MainWindow::on_pushButtonCalculate_clicked()
         case 5:
             kcal *= 1.90;
             break;
-    } // switch (activity)
+    } // end switch
     results += QString::fromWCharArray(L"<li> Based on the data you entered, to maintain your current weight you need <b>");
     results += QString::number((kcal),'f',0);
     results += QString::fromWCharArray(L" Calories (kCal)</b> per day.</li>");
     m_ui->results->setText(results);
     m_ui->pushButtonSave->setEnabled(true);
-} // void MainWindow::on_pushButtonCalculate_clicked()
+} // end MainWindow::on_pushButtonCalculate_clicked
 
 void MainWindow::on_pushButtonSave_clicked()
 {
@@ -230,9 +234,9 @@ void MainWindow::on_pushButtonSave_clicked()
     m_ui->pushButtonSave->setEnabled(false);
     MainWindow::on_pushButtonResetData_clicked();
     MainWindow::populate_history();
-} // void MainWindow::on_pushButtonSave_clicked()
+} // end MainWindow::on_pushButtonSave_clicked
 
 void MainWindow::on_pushButtonExit_clicked()
 {
     QApplication::quit();
-} // void MainWindow::on_pushButtonExit_clicked()
+} // end MainWindow::on_pushButtonExit_clicked
