@@ -1,7 +1,8 @@
-2020-02-11  Stavros Filippidis  <sfilippidis@gmail.com>
+2021-01-04  Stavros Filippidis  <sfilippidis@gmail.com>
 
-	* Development of next release (temporary named 1.0.5+).
-	* Change in number of decimal digits displayed.
+	* Version 1.0.6 released.
+	* Code refactoring.
+	* New website.
 
 2020-01-07  Stavros Filippidis  <sfilippidis@gmail.com>
 
