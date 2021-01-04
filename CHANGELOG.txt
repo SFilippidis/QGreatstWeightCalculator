@@ -1,5 +1,11 @@
 2021-01-04  Stavros Filippidis  <sfilippidis@gmail.com>
 
+	* Version 1.0.7 released.
+	* Code refactoring.
+	* Minor changes.
+	
+2021-01-04  Stavros Filippidis  <sfilippidis@gmail.com>
+
 	* Version 1.0.6 released.
 	* Code refactoring.
 	* New website.
