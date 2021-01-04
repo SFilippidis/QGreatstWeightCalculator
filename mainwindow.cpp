@@ -137,7 +137,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
-    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.7. A program for weight related calcu"
+    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.7+. A program for weight related calcu"
                                                          "lations.<BR><BR>Copyright (C) 2011-2021 Stavros Filippidis<BR>email: <A HREF="
                                                          "'mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='htt"
                                                          "ps://blogs.sch.gr/sfil/'>https://sfil.mysch.gr/</A><BR><BR>QGreatstWeight"
