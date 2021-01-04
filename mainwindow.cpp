@@ -54,19 +54,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::populate_history()
 {
-    double BMIValue=0.0;
-    double heightValue=0.0;
-    double weightValue=0.0;
-    QString genderValue;
-    QString nameValue;
-    QString idealWeightValue;
-    QDateTime recordDateTimeValue;
     QFile dataFile(QDir::homePath()+"/QGreatstWeightCalculator.data");
     if (!dataFile.open(QIODevice::ReadOnly)) {
         return;
     } // end if
     m_doesDataFileExist = true;
     QDataStream in(&dataFile);
+    QDateTime recordDateTimeValue;
+    QString nameValue;
+    QString genderValue;
+    double heightValue;
+    double weightValue;
+    double BMIValue;
+    QString idealWeightValue;
     QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td>"
                                                          "<td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><"
                                                          "td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></cen"
@@ -91,14 +91,12 @@ void MainWindow::populate_history()
 
 void MainWindow::create_history()
 {
-    double weight = m_ui->doubleSpinBoxWeight->value();
-    double height = m_ui->doubleSpinBoxHeight->value()/100.0;
-    int gender = m_ui->comboBoxGender->currentIndex();
     QString genderText = QString::fromWCharArray(L"male");
+    int gender = m_ui->comboBoxGender->currentIndex();
     if (gender == 1) {
         genderText = QString::fromWCharArray(L"female");
     } // end if
-    double bmi = weight/(height*height);
+    double height = m_ui->doubleSpinBoxHeight->value()/100.0;
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
     QString filename = QDir::homePath()+QString::fromWCharArray(L"/QGreatstWeightCalculator.data");
@@ -115,6 +113,8 @@ void MainWindow::create_history()
     idealWeight += QString::number(idealWeightLow,'f',1);
     idealWeight += QString::fromWCharArray(L" to ");
     idealWeight += QString::number(idealWeightHigh,'f',1);
+    double weight = m_ui->doubleSpinBoxWeight->value();
+    double bmi = weight/(height*height);
     out << QDateTime::currentDateTime() << m_ui->name->text() << genderText << height << weight
         << bmi << idealWeight;
     dataFile.flush();
@@ -137,7 +137,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
-    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.5+. A program for weight related calcu"
+    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.6+. A program for weight related calcu"
                                                          "lations.<BR><BR>Copyright (C) 2011-2021 Stavros Filippidis<BR>email: <A HREF="
                                                          "'mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='htt"
                                                          "ps://blogs.sch.gr/sfil/'>https://sfil.mysch.gr/</A><BR><BR>QGreatstWeight"
@@ -169,16 +169,11 @@ void MainWindow::on_pushButtonResetData_clicked()
 
 void MainWindow::on_pushButtonCalculate_clicked()
 {
-    double weight = m_ui->doubleSpinBoxWeight->value();
-    double height = m_ui->doubleSpinBoxHeight->value()/100.0;
-    double age = m_ui->doubleSpinBoxAge->value();
-    int gender = m_ui->comboBoxGender->currentIndex();
-    int activity = m_ui->comboBoxActivity->currentIndex();
-    double bmi = weight/(height*height);
-    double idealWeightLow = 18.50 * height * height;
-    double idealWeightHigh = 24.99999 * height * height;
     QString results = QString::fromWCharArray(L"Here are your results (approximately):<br>");
     results += QString::fromWCharArray(L"<ul><li>Your body mass index is <b>");
+    double weight = m_ui->doubleSpinBoxWeight->value();
+    double height = m_ui->doubleSpinBoxHeight->value()/100.0;
+    double bmi = weight/(height*height);
     results += QString::number(bmi,'d',2);
     results += QString::fromWCharArray(L"</b>, so your standard weight status category is <b>\"");
     if (bmi < 18.5) {
@@ -192,16 +187,21 @@ void MainWindow::on_pushButtonCalculate_clicked()
     } // end if
     results += QString::fromWCharArray(L"\"</b>.</li><br>");
     results += QString::fromWCharArray(L"<li>Based on your height, your normal weight range is <b>from ");
+    double idealWeightLow = 18.50 * height * height;
     results += QString::number(idealWeightLow,'f',1);
     results += QString::fromWCharArray(L" to ");
+    double idealWeightHigh = 24.99999 * height * height;
     results += QString::number(idealWeightHigh,'f',1);
     results += QString::fromWCharArray(L" kg</b>.</li><br>");
     double kcal = 0.0;
+    double age = m_ui->doubleSpinBoxAge->value();
+    int gender = m_ui->comboBoxGender->currentIndex();
     if (gender == 0) {
         kcal = 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
     } else {
         kcal = 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
     } // end if
+    int activity = m_ui->comboBoxActivity->currentIndex();
     switch (activity) {
         case 0:
             break;
