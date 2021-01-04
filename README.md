@@ -9,4 +9,4 @@ You should have received a copy of the GNU General Public License along with QGr
 
 * For general instructions on how to compile, please view file: INSTRUCTIONS.txt
 
-* For the application's icon (files QGreatstWeightCalculator.ico and QGreatstWeightCalculator.icns) an icon from <https://openclipart.org/> was used, available at <https://openclipart.org/detail/61195/body-scale> (last accessed: 25th January 2020).
+* For the application's icon (files QGreatstWeightCalculator.ico and QGreatstWeightCalculator.icns) an icon from <https://openclipart.org/> was used, available at <https://openclipart.org/detail/61195/body-scale> (last accessed: 4th January 2021).
