@@ -30,14 +30,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>564</height>
+    <width>648</width>
+    <height>528</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <pointsize>12</pointsize>
-   </font>
   </property>
   <property name="focusPolicy">
    <enum>Qt::TabFocus</enum>
@@ -57,11 +52,6 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
       </property>
       <property name="toolTip">
        <string/>
@@ -85,11 +75,6 @@
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
                <widget class="QLabel" name="label_4">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;b&gt;name&lt;/b&gt;</string>
                 </property>
@@ -97,11 +82,6 @@
               </item>
               <item>
                <widget class="QLabel" name="label">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;b&gt;weight (kg)*&lt;/b&gt; (accepted values: from 30 to 300)    </string>
                 </property>
@@ -109,11 +89,6 @@
               </item>
               <item>
                <widget class="QLabel" name="label_2">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;height (cm)*&lt;/span&gt; (accepted values: from 100 to 270) &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -121,11 +96,6 @@
               </item>
               <item>
                <widget class="QLabel" name="label_6">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;age (years)*&lt;/span&gt; (accepted values: from 20 to 110) &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
@@ -133,11 +103,6 @@
               </item>
               <item>
                <widget class="QLabel" name="label_3">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;b&gt;gender*&lt;/b&gt;</string>
                 </property>
@@ -145,11 +110,6 @@
               </item>
               <item>
                <widget class="QLabel" name="label_5">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&lt;b&gt;select activity level*&lt;/b&gt;</string>
                 </property>
@@ -164,21 +124,10 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout">
                   <item>
-                   <widget class="QLineEdit" name="name">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                   </widget>
+                   <widget class="QLineEdit" name="name"/>
                   </item>
                   <item>
                    <widget class="QDoubleSpinBox" name="doubleSpinBoxWeight">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
                     <property name="decimals">
                      <number>1</number>
                     </property>
@@ -195,11 +144,6 @@
                   </item>
                   <item>
                    <widget class="QDoubleSpinBox" name="doubleSpinBoxHeight">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
                     <property name="decimals">
                      <number>0</number>
                     </property>
@@ -219,11 +163,6 @@
                   </item>
                   <item>
                    <widget class="QDoubleSpinBox" name="doubleSpinBoxAge">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
                     <property name="decimals">
                      <number>0</number>
                     </property>
@@ -243,11 +182,6 @@
                   </item>
                   <item>
                    <widget class="QComboBox" name="comboBoxGender">
-                    <property name="font">
-                     <font>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
                     <property name="statusTip">
                      <string>επιλέξτε το φύλο</string>
                     </property>
@@ -269,11 +203,6 @@
               </item>
               <item>
                <widget class="QComboBox" name="comboBoxActivity">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
                 <item>
                  <property name="text">
                   <string>no exercise</string>
@@ -312,17 +241,12 @@
           </item>
           <item>
            <widget class="QTextBrowser" name="results">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Lucida Grande';&quot;&gt;Results will appear here!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Lucida Grande'; font-size:8pt;&quot;&gt;Results will appear here!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -330,11 +254,6 @@ p, li { white-space: pre-wrap; }
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
              <widget class="QPushButton" name="pushButtonCalculate">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="statusTip">
                <string>calculate body mass index and other info</string>
               </property>
@@ -354,11 +273,6 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonResetData">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="statusTip">
                <string>clear data of this window</string>
               </property>
@@ -372,11 +286,6 @@ p, li { white-space: pre-wrap; }
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonSave">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="statusTip">
                <string>save current calculations</string>
               </property>
@@ -424,17 +333,12 @@ p, li { white-space: pre-wrap; }
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QTextBrowser" name="textBrowser_3">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;You have not saved any data yet! Once you save some data, they will appear here!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;You have not saved any data yet! Once you save some data, they will appear here!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -450,8 +354,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>993</width>
-     <height>22</height>
+     <width>648</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout">
