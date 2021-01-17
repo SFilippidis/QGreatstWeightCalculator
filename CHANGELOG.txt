@@ -3,6 +3,7 @@
 	* Code refactoring.
 
 2021-01-07  Stavros Filippidis  <sfilippidis@gmail.com>
+
 	* Changed font sizes of the main window.
 
 2021-01-04  Stavros Filippidis  <sfilippidis@gmail.com>
