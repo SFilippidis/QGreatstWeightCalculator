@@ -67,11 +67,7 @@ void MainWindow::populate_history()
     double weightValue;
     double BMIValue;
     QString idealWeightValue;
-    QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td>"
-                                                         "<td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><"
-                                                         "td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></cen"
-                                                         "ter></td><td><center><b>Body mass index</b></center></td><td><center><b>Ideal"
-                                                         " weight (kg)</b></center></td></tr>");
+    QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td><td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></center></td><td><center><b>Body mass index</b></center></td><td><center><b>Ideal weight (kg)</b></center></td></tr>");
     while (!in.atEnd()) {
         in >> recordDateTimeValue >> nameValue >> genderValue
                 >> heightValue >> weightValue >> BMIValue >> idealWeightValue;
@@ -102,8 +98,7 @@ void MainWindow::create_history()
     QString filename = QDir::homePath()+QString::fromWCharArray(L"/QGreatstWeightCalculator.data");
     QFile dataFile(filename);
     if(!dataFile.open(QIODevice::Append)) {
-        QString datafileErrorInfoText = QString::fromWCharArray(L"File could not be opened for appending new data. Your data was not sa"
-                                                                "ved!");
+        QString datafileErrorInfoText = QString::fromWCharArray(L"File could not be opened for appending new data. Your data was not saved!");
         QString datafileErrorTitle = QString::fromWCharArray(L"Error with the results' file");
         displayInformationMessage(datafileErrorInfoText, datafileErrorTitle, QMessageBox::Critical);
         return;
@@ -119,11 +114,7 @@ void MainWindow::create_history()
         << bmi << idealWeight;
     dataFile.flush();
     if (!m_doesDataFileExist) {
-        QString writingDataInfoText = QString::fromWCharArray(L"File QGreatstWeightCalculator.data was created and your data is saved.<"
-                                                              "br><br>File QGreatstWeightCalculator.data exists in your home directory."
-                                                              " To delete all saved data, delete the file QGreatstWeightCalculator.data"
-                                                              ".<BR><BR>This window will not appear again (in the following savings).<b"
-                                                              "r><br>The location of the file is:<BR><BR>");
+        QString writingDataInfoText = QString::fromWCharArray(L"File QGreatstWeightCalculator.data was created and your data is saved.<br><br>File QGreatstWeightCalculator.data exists in your home directory. To delete all saved data, delete the file QGreatstWeightCalculator.data.<BR><BR>This window will not appear again (in the following savings).<br><br>The location of the file is:<BR><BR>");
         writingDataInfoText += filename;
         QString writingDataTitle = QString::fromWCharArray(L"Data file created");
         displayInformationMessage(writingDataInfoText, writingDataTitle, QMessageBox::Information);
