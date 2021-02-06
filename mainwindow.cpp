@@ -1,7 +1,7 @@
 // MainWindow's implementation.
 
 // Copyright (C) 2011-2021 Stavros Filippidis
-// Contact: sfilippidis@gmail.com
+// Contact: stavros@filippidis.name
 
 // This file is part of QGreatstWeightCalculator.
 
@@ -119,7 +119,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
-    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.7+. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2021 Stavros Filippidis<BR>email: <A HREF='mailto:sfilippidis@gmail.com'>sfilippidis@gmail.com</A><BR>www: <A HREF='https://blogs.sch.gr/sfil/'>https://sfil.mysch.gr/</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
+    QString licenceAndInfoText = QString::fromWCharArray(L"QGreatstWeightCalculator. Version 1.0.7+. A program for weight related calculations.<BR><BR>Copyright (C) 2011-2021 Stavros Filippidis<BR>email: <A HREF='mailto:stavros@filippidis.name'>stavros@filippidis.name</A><BR>www: <A HREF='https://www.filippidis.name/'>https://www.filippidis.name/</A><BR><BR>QGreatstWeightCalculator is free software: you can redistribute it and/or modify<BR>it under the terms of the GNU General Public License as published by<BR>the Free Software Foundation, either version 3 of the License, or<BR>(at your option) any later version.<BR><BR>QGreatstWeightCalculator is distributed in the hope that it will be useful,<BR>but WITHOUT ANY WARRANTY; without even the implied warranty of<BR>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<BR>GNU General Public License for more details.<BR><BR>You should have received a copy of the GNU General Public License<BR>along with QGreatstWeightCalculator.  If not, see <A HREF='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</A>.<BR>");
     QString licenceTitle = QString::fromWCharArray(L"About QGreatstWeightCalculator");
     displayInformationMessage(licenceAndInfoText, licenceTitle, QMessageBox::NoIcon);
 } // end MainWindow::about
