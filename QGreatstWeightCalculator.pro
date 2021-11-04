@@ -18,7 +18,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with QGreatstWeightCalculator.  If not, see <http://www.gnu.org/licenses/>.
 
-QT       += core gui sql
+QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = QGreatstWeightCalculator
 TEMPLATE = app
