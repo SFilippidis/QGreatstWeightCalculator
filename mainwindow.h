@@ -41,6 +41,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 private:
+    QString m_name ="";
+    double m_weight = 80.0;
+    double m_height = 180.0;
+    double m_age = 40.0;
+    int m_gender_index = 0;
+    int m_actividy_index = 0;
     Ui::MainWindow *m_ui;
     bool m_doesDataFileExist;
     void populate_history();
