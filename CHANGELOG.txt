@@ -1,3 +1,7 @@
+2024-11-01  Stavros Filippidis  <sfilippidis@gmail.com>
+
+	* New comments added.
+
 2021-02-06  Stavros Filippidis  <stavros@filippidis.name>
 
 	* New email and website.
