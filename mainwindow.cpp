@@ -1,6 +1,6 @@
 // MainWindow's implementation.
 
-// Copyright (C) 2011-2021 Stavros Filippidis
+// Copyright (C) 2011-2024 Stavros Filippidis
 // Contact: stavros@filippidis.name
 
 // This file is part of QGreatstWeightCalculator.
@@ -32,7 +32,15 @@ void displayInformationMessage(QString infoText, QString title, QMessageBox::Ico
     msgBox.setInformativeText(infoText);
 #endif
     msgBox.setStandardButtons(QMessageBox::Ok);
+     // ================================
+    // Warning:
+    // --------------------------------
+    // void QMessageBox::setButtonText(int button, const QString &text) is
+    // is deprecated since Qt 6.2. In the future,
+    // QPushButton *QMessageBox::addButton(const QString &text, QMessageBox::ButtonRole role)
+    // should be used instead.
     msgBox.setButtonText(QMessageBox::Ok, QString::fromWCharArray(L"Ok"));
+    // ================================
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.setIcon(icon);
     msgBox.exec();
