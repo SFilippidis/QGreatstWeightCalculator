@@ -64,6 +64,7 @@ void MainWindow::populate_history()
 {
     QFile dataFile(QDir::homePath()+"/QGreatstWeightCalculator.data");
     if (!dataFile.open(QIODevice::ReadOnly)) {
+        MainWindow::on_pushButtonResetData_clicked();
         return;
     } // end if
     m_doesDataFileExist = true;
@@ -71,15 +72,28 @@ void MainWindow::populate_history()
     QDateTime recordDateTimeValue;
     QString nameValue;
     QString genderValue;
-    double heightValue;
-    double weightValue;
-    double BMIValue;
+    double heightValue = 0.0;
+    double weightValue = 0.0;
+    double BMIValue = 0.0;
+    double ageValue = 0.0;
+    int activityValue = 0;
     QString idealWeightValue;
-    QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td><td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></center></td><td><center><b>Body mass index</b></center></td><td><center><b>Ideal weight (kg)</b></center></td></tr>");
-    while (!in.atEnd()) {
-        in >> recordDateTimeValue >> nameValue >> genderValue >> heightValue >> weightValue >> BMIValue >> idealWeightValue;
-        dataFromFileInHTML+=QString::fromWCharArray(L"<tr><td><center>") + recordDateTimeValue.toString()+QString::fromWCharArray(L"</center></td><td><center>") + nameValue+QString::fromWCharArray(L"</center></td><td><center>") + genderValue+QString::fromWCharArray(L"</center></td><td><center>") + QString::number(heightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>") + QString::number(weightValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>") + QString::number(BMIValue,'f',2)+QString::fromWCharArray(L"</center></td><td><center>") + idealWeightValue+QString::fromWCharArray(L"</center></td></tr>");
+    QString dataFromFileInHTML = QString::fromWCharArray(L"<center><table border='1'><tr><td><center><b>Date and time</b></center></td><td><center><b>Name</b></center></td><td><center><b>Gender</b></center></td><td><center><b>Age (years)</b><td><center><b>Height (m)</b></center></td><td><center><b>Weight (kg)</b></center></td><td><center><b>Body mass index</b></center></td><td><center><b>Ideal weight (kg)</b></center></td></tr>");
+    while (!in.atEnd()) {        
+        in >> recordDateTimeValue >> nameValue >> genderValue >> ageValue >> heightValue >> weightValue >> BMIValue >> activityValue >> idealWeightValue;
+        dataFromFileInHTML += QString::fromWCharArray(L"<tr><td><center>") + recordDateTimeValue.toString() + QString::fromWCharArray(L"</center></td><td><center>") + nameValue + QString::fromWCharArray(L"</center></td><td><center>") + genderValue + QString::fromWCharArray(L"</center></td><td><center>") + QString::number(ageValue,'f',2) + QString::fromWCharArray(L"</center></td><td><center>") + QString::number(heightValue,'f',2) + QString::fromWCharArray(L"</center></td><td><center>") + QString::number(weightValue,'f',2) + QString::fromWCharArray(L"</center></td><td><center>") + QString::number(BMIValue,'f',2) + QString::fromWCharArray(L"</center></td><td><center>") + idealWeightValue + QString::fromWCharArray(L"</center></td></tr>");
     } // end while
+    m_name = nameValue;
+    if (genderValue == "male") {
+        m_gender_index = 0;
+    } else {
+        m_gender_index = 1;
+    }
+    m_height = heightValue * 100.0;
+    m_weight = weightValue;
+    m_age = ageValue;
+    m_actividy_index = activityValue;
+    MainWindow::on_pushButtonResetData_clicked();
     dataFromFileInHTML+=QString::fromWCharArray(L"</table></center>");
     MainWindow::m_ui->textBrowser_3->setText(dataFromFileInHTML);
     dataFile.close();
@@ -87,12 +101,15 @@ void MainWindow::populate_history()
 
 void MainWindow::create_history()
 {
+    QString name = m_ui->name->text();
     QString genderText = QString::fromWCharArray(L"male");
     int gender = m_ui->comboBoxGender->currentIndex();
     if (gender == 1) {
         genderText = QString::fromWCharArray(L"female");
     } // end if
+    int activity = m_ui->comboBoxActivity->currentIndex();
     double height = m_ui->doubleSpinBoxHeight->value()/100.0;
+    double age = m_ui->doubleSpinBoxAge->value();
     double idealWeightLow = 18.50 * height * height;
     double idealWeightHigh = 24.99999 * height * height;
     QString filename = QDir::homePath()+QString::fromWCharArray(L"/QGreatstWeightCalculator.data");
@@ -110,7 +127,7 @@ void MainWindow::create_history()
     idealWeight += QString::number(idealWeightHigh,'f',1);
     double weight = m_ui->doubleSpinBoxWeight->value();
     double bmi = weight/(height*height);
-    out << QDateTime::currentDateTime() << m_ui->name->text() << genderText << height << weight << bmi << idealWeight;
+    out << QDateTime::currentDateTime() << name << genderText << age << height << weight << bmi << activity << idealWeight;
     dataFile.flush();
     if (!m_doesDataFileExist) {
         QString writingDataInfoText = QString::fromWCharArray(L"File QGreatstWeightCalculator.data was created and your data is saved.<br><br>File QGreatstWeightCalculator.data exists in your home directory. To delete all saved data, delete the file QGreatstWeightCalculator.data.<BR><BR>This window will not appear again (in the following savings).<br><br>The location of the file is:<BR><BR>");
@@ -134,13 +151,13 @@ void MainWindow::about()
 
 void MainWindow::on_pushButtonResetData_clicked()
 {
-    m_ui->name->setText(QString::fromWCharArray(L""));
-    m_ui->doubleSpinBoxWeight->setValue(80.0);
-    m_ui->doubleSpinBoxHeight->setValue(180.0);
-    m_ui->doubleSpinBoxAge->setValue(40.0);
+    m_ui->name->setText(m_name);
+    m_ui->doubleSpinBoxWeight->setValue(m_weight);
+    m_ui->doubleSpinBoxHeight->setValue(m_height);
+    m_ui->doubleSpinBoxAge->setValue(m_age);
     m_ui->results->setText(QString::fromWCharArray(L"Results will appear here!"));
-    m_ui->comboBoxGender->setCurrentIndex(0);
-    m_ui->comboBoxActivity->setCurrentIndex(0);
+    m_ui->comboBoxGender->setCurrentIndex(m_gender_index);
+    m_ui->comboBoxActivity->setCurrentIndex(m_actividy_index);
     m_ui->pushButtonSave->setEnabled(false);
 } // end MainWindow::on_pushButtonResetData_clicked
 
@@ -209,8 +226,8 @@ void MainWindow::on_pushButtonSave_clicked()
 {
     MainWindow::create_history();
     m_ui->pushButtonSave->setEnabled(false);
-    MainWindow::on_pushButtonResetData_clicked();
     MainWindow::populate_history();
+    MainWindow::on_pushButtonResetData_clicked();
 } // end MainWindow::on_pushButtonSave_clicked
 
 void MainWindow::on_pushButtonExit_clicked()
