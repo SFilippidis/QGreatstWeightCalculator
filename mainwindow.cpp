@@ -35,7 +35,7 @@ void displayInformationMessage(QString infoText, QString title, QMessageBox::Ico
      // ================================
     // Warning:
     // --------------------------------
-    // void QMessageBox::setButtonText(int button, const QString &text) is
+    // void QMessageBox::setButtonText(int button, const QString &text)
     // is deprecated since Qt 6.2. In the future,
     // QPushButton *QMessageBox::addButton(const QString &text, QMessageBox::ButtonRole role)
     // should be used instead.
