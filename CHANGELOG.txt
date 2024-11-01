@@ -1,6 +1,7 @@
 2024-11-01  Stavros Filippidis  <sfilippidis@gmail.com>
 
 	* New comments added.
+	* Data file should be manually deleted and recreated due to new format.
 	* When data has been saved, the last entry is used for the form's initial values.
 
 2021-02-06  Stavros Filippidis  <stavros@filippidis.name>
