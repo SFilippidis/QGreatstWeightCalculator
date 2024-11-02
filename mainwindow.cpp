@@ -88,7 +88,7 @@ void MainWindow::populate_history()
         m_gender_index = 0;
     } else {
         m_gender_index = 1;
-    }
+    } // end if
     m_height = heightValue * 100.0;
     m_weight = weightValue;
     m_age = ageValue;
