@@ -94,7 +94,7 @@ void MainWindow::populate_history()
     m_age = ageValue;
     m_actividy_index = activityValue;
     MainWindow::on_pushButtonResetData_clicked();
-    dataFromFileInHTML+=QString::fromWCharArray(L"</table></center>");
+    dataFromFileInHTML += QString::fromWCharArray(L"</table></center>");
     MainWindow::m_ui->textBrowser_3->setText(dataFromFileInHTML);
     dataFile.close();
 } // end MainWindow::populate_history
