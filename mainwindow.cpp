@@ -32,15 +32,6 @@ void displayInformationMessage(QString infoText, QString title, QMessageBox::Ico
     msgBox.setInformativeText(infoText);
 #endif
     msgBox.setStandardButtons(QMessageBox::Ok);
-     // ================================
-    // Warning:
-    // --------------------------------
-    // void QMessageBox::setButtonText(int button, const QString &text)
-    // is deprecated since Qt 6.2. In the future,
-    // QPushButton *QMessageBox::addButton(const QString &text, QMessageBox::ButtonRole role)
-    // should be used instead.
-    msgBox.setButtonText(QMessageBox::Ok, QString::fromWCharArray(L"Ok"));
-    // ================================
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.setIcon(icon);
     msgBox.exec();
