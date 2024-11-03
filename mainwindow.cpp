@@ -76,9 +76,9 @@ void MainWindow::populate_history()
     } // end while
     m_name = nameValue;
     if (genderValue == "male") {
-        m_gender_index = 0;
+        m_gender_index = 0; // male
     } else {
-        m_gender_index = 1;
+        m_gender_index = 1; // female
     } // end if
     m_height = heightValue * 100.0;
     m_weight = weightValue;
@@ -182,27 +182,27 @@ void MainWindow::on_pushButtonCalculate_clicked()
     double age = m_ui->doubleSpinBoxAge->value();
     int gender = m_ui->comboBoxGender->currentIndex();
     if (gender == 0) {
-        kcal = 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // 0 == male
+        kcal = 66.0 + weight * 13.70 + height * 5.00 * 100.0 - age * 6.80; // male
     } else {
-        kcal = 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // 1 == female
+        kcal = 655.0 + weight * 9.60 + height * 1.80 * 100.0 - age * 4.70; // female
     } // end if
     int activity = m_ui->comboBoxActivity->currentIndex();
     switch (activity) {
-        case 0:
+        case 0: // no exercise
             break;
-        case 1:
+        case 1: // little exercise
             kcal *= 1.20;
             break;
-        case 2:
+        case 2: // light exercise (1-3 days per week)
             kcal *= 1.375;
             break;
-        case 3:
+        case 3: // moderate exercise (3-5 days per week)
             kcal *= 1.55;
             break;
-        case 4:
+        case 4: // heavy exercise (6-7 days per week)
             kcal *= 1.725;
             break;
-        case 5:
+        case 5: // very heavy exercise (twice per day, extra heavy workouts)
             kcal *= 1.90;
             break;
     } // end switch
